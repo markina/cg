@@ -2,22 +2,25 @@
 
 #include "cg/visualization/viewer.h"
 
-namespace cg {
-namespace visualization
+namespace cg
 {
-   struct printer_impl : printer_type
-   {
-      stream_type& corner_stream();
-      stream_type& global_stream(point_2f const & pt);
+    namespace visualization
+    {
+        struct printer_impl : printer_type
+        {
+            stream_type &corner_stream();
 
-      printer_impl(   boost::function<void (point_2i const &, const char *)>    const & draw_string_corner,
-                      boost::function<void (point_2f const &, const char *)>    const & draw_string_global);
+            stream_type &global_stream(point_2f const &pt);
 
-   private:
-      boost::function<void (point_2f const &, const char *)>    draw_string_global_;
-      int corner_stream_height_indent_;
+            printer_impl(boost::function<void(point_2i const &, const char *)> const &draw_string_corner,
+                    boost::function<void(point_2f const &, const char *)> const &draw_string_global);
 
-      boost::scoped_ptr<stream_type> corner_stream_;
-      boost::scoped_ptr<stream_type> global_stream_;
-   };
-}}
+        private:
+            boost::function<void(point_2f const &, const char *)> draw_string_global_;
+            int corner_stream_height_indent_;
+
+            boost::scoped_ptr<stream_type> corner_stream_;
+            boost::scoped_ptr<stream_type> global_stream_;
+        };
+    }
+}
